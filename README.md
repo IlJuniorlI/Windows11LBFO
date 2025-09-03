@@ -36,7 +36,7 @@ This repository provides scripts to enable Load Balancing/Failover (LBFO) and NI
      ```powershell
      type C:\ProgramData\LBFO\install.log
      sc.exe query mslbfoprovider
-     netcfg -s s | findstr /i ms_lbfo
+     netcfg -q ms_lbfo
      Get-NetLbfoTeam
      Get-NetAdapter | Select-Object Name, Status, LinkSpeed
      New-NetLbfoTeam -Name "Team0" -TeamNicName "Team0" -TeamMembers "Ethernet" -TeamingMode SwitchIndependent -LoadBalancingAlgorithm Dynamic -Verbose -ErrorAction SilentlyContinue
@@ -44,7 +44,7 @@ This repository provides scripts to enable Load Balancing/Failover (LBFO) and NI
    - Expected output:
      - `install.log`: Shows successful cleanup, file copy, catalog registration, and driver installation.
      - `sc.exe query mslbfoprovider`: Shows `STATE: 4 RUNNING` or `1 STOPPED`.
-     - `netcfg -s s`: Includes `MS_LBFO`.
+     - `netcfg -q ms_lbfo`: Shows `ms_lbfo is installed`.
      - `Get-NetLbfoTeam`: Lists `Team0` if created, or nothing if not yet created.
      - `Get-NetAdapter`: Lists network adapters (e.g., `Ethernet Up 2.5 Gbps`).
      - `New-NetLbfoTeam`: Successfully creates `Team0`, possibly prompting for confirmation.
